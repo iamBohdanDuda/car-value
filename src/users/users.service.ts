@@ -11,26 +11,29 @@ export class UsersService {
     const user = this.repository.create({ email, password });
 
     return this.repository.save(user);
-  };
+  }
 
   findOne(id: number): Promise<User> {
+    if (!id) {
+      throw new NotFoundException('user not found');
+    }
     return this.repository.findOneBy({ id });
-  };
+  }
 
   findByEmail(email: string): Promise<User> {
     return this.repository.findOneBy({ email });
-  };
+  }
 
   async update(id: number, attributes: Partial<User>): Promise<User> {
     const user = await this.findOne(id);
     if (!user) throw new NotFoundException('user not found');
     Object.assign(user, attributes);
     return this.repository.save(user);
-  };
+  }
 
   async delete(id: number): Promise<User> {
     const user = await this.findOne(id);
     if (!user) throw new NotFoundException('user not found');
     return this.repository.remove(user);
-  };
+  }
 }
