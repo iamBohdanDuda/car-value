@@ -6,14 +6,14 @@ import {
 } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'
+import { map } from 'rxjs/operators';
 
 interface ClassConstructor {
-  new (...args: any[]): {}
+  new (...args: any[]): {};
 }
 
 export function Serialize(dto: ClassConstructor) {
-  return UseInterceptors(new SerializeInterceptor(dto))
+  return UseInterceptors(new SerializeInterceptor(dto));
 }
 
 export class SerializeInterceptor implements NestInterceptor {
@@ -22,11 +22,13 @@ export class SerializeInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     // Before request is handled
 
-    return next.handle().pipe(map((data: any) => {
-      // Before response is sent
-      return plainToInstance(this.dto, data, {
-        excludeExtraneousValues: true
-      });
-    }));
-  };
+    return next.handle().pipe(
+      map((data: any) => {
+        // Before response is sent
+        return plainToInstance(this.dto, data, {
+          excludeExtraneousValues: true,
+        });
+      }),
+    );
+  }
 }
