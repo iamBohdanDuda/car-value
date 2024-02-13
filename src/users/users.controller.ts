@@ -41,7 +41,7 @@ export class UsersController {
     @Body() createUserDto: CreateUserDto,
     @Session() session: Record<string, any>,
   ) {
-    const user = await this.authService.signup(
+    const user = await this.authService.signUp(
       createUserDto.email,
       createUserDto.password,
     );

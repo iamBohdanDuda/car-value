@@ -27,7 +27,7 @@ export class AuthService {
     return hash.toString('hex');
   }
 
-  async signup(email: string, password: string): Promise<User> {
+  async signUp(email: string, password: string): Promise<User> {
     const user = await this.usersService.findByEmail(email);
     if (user) throw new BadRequestException('email already in use');
 
