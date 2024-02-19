@@ -43,7 +43,6 @@ export class AuthService {
   async signIn(email: string, password: string): Promise<User> {
     const user = await this.usersService.findByEmail(email);
     if (!user) throw new NotFoundException('user not found');
-    console.log(user.password);
 
     const salt = user.password.slice(0, 16);
     const storedHash = user.password.slice(16);
