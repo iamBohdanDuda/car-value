@@ -11,10 +11,12 @@ export class ReportDto {
   price: number;
 
   @Expose()
-  make: string;
+  @Transform(({ obj }) => obj.make.id)
+  makeId: number;
 
   @Expose()
-  model: string;
+  @Transform(({ obj }) => obj.model.id)
+  modelId: number;
 
   @Expose()
   year: number;
