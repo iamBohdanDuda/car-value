@@ -4,7 +4,6 @@ import {
   IsLongitude,
   IsNumber,
   IsPositive,
-  IsString,
   Max,
   Min,
 } from 'class-validator';
@@ -15,19 +14,17 @@ export class CreateReportDto {
   @Max(200000000)
   price: number;
 
-  @IsString()
-  make: string;
+  @IsInt()
+  makeId: number;
 
-  @IsString()
-  model: string;
+  @IsInt()
+  modelId: number;
 
-  @IsNumber()
   @IsInt()
   @Min(1930)
   @Max(2077)
   year: number;
 
-  @IsNumber()
   @IsInt()
   @IsPositive()
   mileage: number;

@@ -5,6 +5,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { ReportsModule } from './reports/reports.module';
+import { MakesModule } from './makes/makes.module';
+import { ModelsModule } from './models/models.module';
 import configuration from './config';
 import databaseConfig from './config/database.config';
 
@@ -17,6 +19,8 @@ import databaseConfig from './config/database.config';
     UsersModule,
     ReportsModule,
     TypeOrmModule.forRoot(databaseConfig()),
+    MakesModule,
+    ModelsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
